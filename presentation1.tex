@@ -88,8 +88,7 @@
 
 	\begin{figure}
 		\centering
-		\only<2>{\includegraphics[scale=.4]{pictures/bad_examples.pdf}}
-		\only<3>{\includegraphics[scale=.4]{pictures/good_examples.pdf}}
+		\only<2>{\includegraphics[scale=.4]{pictures/examples.pdf}}
 	\end{figure}
 \end{frame}
 
@@ -102,22 +101,22 @@
 			a closed Eulerian trail.
 		\end{enumerate}}
 
-		\only<2-3>{Starting at an arbitrary vertex $v$, begin constructing a trail. Continue until we reach a vertex
-		we cannot leave. If this vertex is not $v$, we entered on one edge and do not have a
+		\only<2-3>{Start at an arbitrary vertex $v$, begin constructing a trail. Continue until we reach a vertex
+		we cannot leave. If this vertex is not $v$, that means we entered on one edge and do not have a
 		corresponding exit, meaning this vertex has an odd degree, which is a contradiction.
-		So we know that it is $v$, meaning we have found a closed trail, which we will called
+		So we know that we are at $v$, meaning we have found a closed trail, which we will called
 		$C_1$.}
 		
 		\only<4-5>{If $C_1$ contains all the edges of $G$, we have found an Eulerian trail and are 
-		done, if not remove all the edges of $C_1$ from $G$, let's call the resulting graph $G'$. 
+		done. If not remove all the edges of $C_1$ from $G$, let's call the resulting graph $G'$. 
 		$G'$ is not necessarily connected.}
 
 		\only<6>{Select a vertex $w$ that is in both $C_1$ and $G$. Then begin tracing 
-		a trail in $G'$ Starting at $w$ until we arrive back at $w$. Name the resulting closed 
+		a trail in $G'$ starting at $w$ until we arrive back at $w$. Name the resulting closed 
 		trail $C_2$.}
 		
 		\only<7>{Combine $C_1$ and $C_2$ to form another closed trail denoted as $C'$. If 
-		$C'$ contains all the edges of $G$, we have found a closed Eulerian trail. If not, 
+		$C'$ contains all the edges of $G$, we have found a closed Eulerian trail and are done. If not, 
 		remove all the edges of $C'$ from $G$ to get $G''$. Choose a vertex in both $C'$ and 
 		$G''$ and repeat the steps above until we have used all the edges of $G$.}
 		\alt<7>{\qedhere}{\phantom\qedhere}
@@ -166,7 +165,7 @@
 \begin{frame}{Applications}
 	\begin{itemize}
 		\item<1-> Computer Science
-		\item<2-> Networks
+		\item<2-> Networking
 		\item<3-> Routing 
 	\end{itemize}
 \end{frame}
