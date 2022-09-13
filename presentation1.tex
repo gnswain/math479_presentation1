@@ -57,7 +57,6 @@
 	}
 
 	\only<2>{
-		\hspace{0.5in}
 		\begin{definition}
 			The {\bf degree} of a vertex, $v$, is the number of edges incident with $v$.
 		\end{definition}
@@ -82,8 +81,15 @@
 			vertex has an even degree.
 		\end{enumerate}
 		Take an arbitrary vertex $v$. As we traverse $C$, each time we enter $v$ we must be able
-		to exit on a distinct edge. Thus every vertex must be adjacent to $2k$ edges, where $k$
+		to exit on a distinct edge. Thus every vertex must be incident with $2k$ edges, where $k$
 		is the number of times a vertex is visited. Therefore every vertex has even degree.
+
+		\only<3>{
+		\vspace{8 pt}
+		$v$ is incident to the first edge as well as the last edge. So the math works out to \\ 
+		\centerline{$1+2k+1 = 2+2k$} 
+		or two plus a positive number. So it holds true for the first vertex.
+		}
 	\end{proof}
 
 	\begin{figure}
@@ -166,7 +172,7 @@
 	\begin{itemize}
 		\item<1-> Computer Science
 		\item<2-> Networking
-		\item<3-> Routing 
+		\item<3-> Mailing 
 	\end{itemize}
 \end{frame}
 
