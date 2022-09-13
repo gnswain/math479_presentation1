@@ -12,6 +12,16 @@
     
 \frame{\titlepage}
 
+\section{History}
+
+\begin{frame}{K\"{o}nigsberg Bridge Problem}
+	\begin{figure}
+		\centering
+		\only<1>{\includegraphics[scale=.18]{pictures/bridge_pic.png}}
+		\only<2>{\includegraphics[scale=.35]{pictures/konigsberg.pdf}}
+	\end{figure}
+\end{frame}
+
 \section{Definitions}
 
 \begin{frame}[t]
@@ -112,11 +122,11 @@
 		$G''$ and repeat the steps above until we have used all the edges of $G$.}
 		\alt<7>{\qedhere}{\phantom\qedhere}
 	\end{proof}
-	
+
 	\begin{figure}
 		\centering
 		\only<1>{\includegraphics[scale=.25]{pictures/g.pdf}}
-		\only<3-4>{\includegraphics[scale=.25]{pictures/c1.pdf}}
+		\only<3-4>{\includegraphics[scale=.24]{pictures/c1.pdf}}
 		\only<5>{\includegraphics[scale=.25]{pictures/g'.pdf}}
 		\only<6>{\includegraphics[scale=.25]{pictures/c2.pdf}}
 		\only<7>{\includegraphics[scale=.25]{pictures/c'.pdf}}
@@ -146,14 +156,20 @@
 
 \section{Conclusion}
 
+\begin{frame}{Applications}
+	\begin{itemize}
+		\item<1-> Computer Science
+		\item<2-> Networks
+		\item<3-> Routing 
+	\end{itemize}
+\end{frame}
+
 \frame{
 	\frametitle{References}
 	\begin{enumerate}{\scriptsize
 		\item[{[1]}] Belcastro, {\it Discrete Mathematics with Ducks}, CRC Press, 2012.
 		\item[{[2]}] Epp, {\it Discrete Mathematics with Applications}, Brooks Cole, 1996.
-		
-		}\end{enumerate}
-
+	}\end{enumerate}
 }
 
 \end{document}
