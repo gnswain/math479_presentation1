@@ -62,31 +62,6 @@
 \newtheorem{theorem}{Theorem}%[section]
 \newtheorem{lemma}[theorem]{Lemma}
 
-%\theoremstyle{definition}
-%\newtheorem{definition}[theorem]{Definition}
-%\newtheorem{example}[theorem]{Example}
-%\newtheorem{xca}[theorem]{Exercise}
-
-%\theoremstyle{corollary}
-%\newtheorem{corollary}[theorem]{Corollary}
-
-%\theoremstyle{remark}
-%\newtheorem{remark}[theorem]{Remark}
-
-%\numberwithin{equation}{section}
-
-%\newcommand{\comm}[1]{\marginpar {\fbox{#1}}}
-%\def\xxx#1{\vskip5pt\hrule\vskip2pt\hrule\vskip5pt\centerline{#1}\vskip5pt\hrule\vskip2pt\hrule\vskip5pt}
-
-
-
-%\section*{\Large \bf TEACHING STATEMENT}
-
-%{\centerline{\small MARK BUDDEN}} %{\centerline{\today}}
-
-%\centerline{\Large {\bf Title - Sample \LaTeX File}}
-
-
 
 \title{Proof for Closed Eulerian Trails}
 
@@ -97,7 +72,9 @@
 
 
 \begin{abstract}
-You should include a short abstract describing the contents of your paper.  Avoid specific references from the paper itself - the abstract should be written so that it could stand alone from your paper.\end{abstract}
+In this paper we explore a proof showing that a graph contains a closed Eulerian trail if and only if
+all of its vertices have even degree. We show part of this proof by developing an algorithm.
+\end{abstract}
 
 \maketitle
 
@@ -111,12 +88,13 @@ You should include a short abstract describing the contents of your paper.  Avoi
 
 \section{Introduction}
 
-You should begin your paper with an introduction that provides the background and definitions needed for your topic.  A sample image is given below in Figure \ref{picture}.  Note that the pdf file begin references must be in the same folder on your computer as the tex file, otherwise it will not compile correctly.
-
+This problem dates back to 18th century K\"{o}nigsberg, Prussia, modern day Kaliningrad, Russia. K\"{o}nigsberg had seven
+bridges that connected four landmasses, the figure below shows roughly how the bridges were arranged. The citizens of
+K\"{o}nigsberg wonder if a person could walk across town and cross each bridge exactly once.
 
 \begin{figure}[h!]
 \centerline{
-{\includegraphics[width=0.4\textwidth]{pictures/bad_examples.pdf}}}\caption{This is how you put in a caption for an image.}\label{picture}
+{\includegraphics[width=.7\textwidth]{pictures/bridge_pic.png}}}\label{bridge}
 \end{figure} 
 
 \section{Theorem Environments}
