@@ -17,6 +17,7 @@
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 \usepackage{comment}
+\usepackage{changepage}
 
 
 \textheight=9in \textwidth=6.2in \topmargin=0in
@@ -88,21 +89,157 @@ all of its vertices have even degree. We show part of this proof by developing a
 
 \section{Introduction}
 
-This problem dates back to 18th century K\"{o}nigsberg, Prussia, modern day Kaliningrad, Russia. K\"{o}nigsberg had seven
-bridges that connected four landmasses, the figure below shows roughly how the bridges were arranged. The citizens of
-K\"{o}nigsberg wonder if a person could walk across town and cross each bridge exactly once.
+This problem dates back to 18th century K\"{o}nigsberg, Prussia, modern day Kaliningrad, Russia. 
+K\"{o}nigsberg had seven bridges that connected four landmasses, the figure below shows roughly 
+how the bridges were arranged. The citizens of K\"{o}nigsberg wonder if a person could walk across 
+town and cross each bridge exactly once.
 
 \begin{figure}[h!]
 \centerline{
 {\includegraphics[width=.7\textwidth]{pictures/bridge_pic.png}}}\label{bridge}
 \end{figure} 
 
-\section{Theorem Environments}
+The problem was solved by Leonard Euler, who found it to be impossible. His reasoning was that 
+every time you enter a landmass you must also be able to leave it, so any landmass with and odd
+number of bridges coming from it would cause you to get stuck. There is an exception for the landmass
+that you start and end on, but in K\"{o}nigsberg each landmass has an odd number of bridges coming from
+them. This led to the theorem we are looking at today as well as set the basis for graph theory.
 
-\begin{theorem}[Ramsey, 1930] \ This is how you create a theorem. The reference next to the Theorem name can be left out.  \label{theorem1}
+\section{Definitions}
+\noindent
+Before we look at the theorem, we first must go over some definitions to help understand it.
+
+\noindent
+\textbf{Definition} 
+\emph{
+    A \textbf{graph} G = (V,E) is comprised of a set of vertices V and a set of 
+    different undordered pairs of distinct vertices from V. Elements from E are called edges.
+}
+
+\noindent
+\textbf{Definition} 
+\emph{
+    Two vertices v, w that exist in V are said to be \textbf{adjacent} if the
+    edge vw exits in E.
+}
+
+\noindent
+\textbf{Definition}
+\emph{
+    If ab exits in E, then we say that the vertex v and the edge vw are \textbf{incident}; w would
+    also be incident with vw.
+}
+
+\noindent
+\textbf{Definition}
+\emph{
+    The \textbf{degree} of a vertex v that exits in V is the amount of edges in E that are incident
+    with v.
+}
+
+\noindent
+\textbf{Definition}
+\emph{
+    A \textbf{walk} W is a finitie sequence of vertices in which each consecutive pair of vertices
+    are adjacent.
+}
+Vertices and edges are allowed to be repeated in a walk, with the exception of the same vertex consecutively.
+
+\noindent
+\textbf{Definition}
+\emph{
+    A \textbf{trail} T is a walk in which edges are not allowed to be repeated. A trail is called a 
+    \textbf{closed trail} when the trail begins and ends at the same vertex.
+}
+
+\noindent
+\textbf{Definition}
+\emph{
+    A trail that contains all of the edges in E is called an \textbf{Eulerian trail}. A \textbf{closed
+    Eulerian trail} when the trail begins and ends at the same vertex.
+}
+
+\noindent
+\textbf{Definition}
+\emph{
+    A graph is said to be \textbf{connected} if, and only if, there is a walk between any two vertices
+    v and w.
+}
+
+\section{Theorem and Proof}
+
+\begin{theorem} \ 
+    A connected graph has a closed Eulerian trail if and only if all of its vertices have even degree.
+    \label{theorem1}
 \end{theorem}
 
-\begin{proof} \ This is how you can create a proof environment.  \end{proof}
+\begin{proof} 
+    ($\Rightarrow$) Assume a connected graph $G$ has a closed Eulerian trail, denoted as $C$. Prove that
+    every vertex has an even degree. 
+    
+    \noindent
+    Take an arbitrary vertex $v$. As we traverse $C$, each time we enter $v$ we must be able to exit on a
+    distinct edge. Thus every vertex must be incident with 2$k$ edges, where $k$ is the number of times
+    a vertex is visited. Therefore every vertex has an even degree. 
+
+    \noindent
+    The first vertex of $C$ does make a special case. It does not matter since we chose an arbitrary
+    vertex in the first step, but we can still look at it. Denote the first vertex of $C$ as $a$. We
+    know that $a$ is incident to the first edge of $C$, the last edge of $C$, as well as a 2$k$ amount
+    of other edges. So $a$ is adjacent to \\
+    \centerline{$1+2k+1 = 2+2k$} \\
+    edges, which will result in an even number.
+
+    \noindent
+    ($\Leftarrow$) Assume $G$ is a connected graph with every vertex having even degree. Prove that
+    it has a closed Eulerian trail.
+
+    \noindent
+    To prove this direction we must construct an algorithm. 
+    
+    \noindent
+    \textbf{Step 1.} Pick an arbitrary vertex $v$ to act as our starting point.
+
+    \noindent
+    \textbf{Step 2.} Construct a trail beginning at $v$. Continue to add edges to this trail until we
+    arrive back at $v$. (\emph{We know we arrived at $v$ since if we entered another vertex $a$ that we
+    could not leave then $a$ has an edge to enter on but not a corresponding edge to exit on. Which would
+    mean that $a$ has an odd degree, which would be a contradiction.}) Since we did arrive back at
+    $v$ we formed a closed trail, which we will called $C_1$.
+
+    \noindent
+    \textbf{Step 3.} Check if $C_1$ contains all the edges of $G$. If it does we have found a closed
+    Eulerian trail and are done. If it does not contain all of the edges of $G$ then we continue to
+    \textbf{Step 4}.
+
+    \noindent
+    \textbf{Step 4.} Remove all of the edges in $C_1$ from $G$. We will call the resulting graph $G'$.
+    $G'$ does not need to be connected.
+
+    \noindent
+    \textbf{Step 5.} Choose an arbitrary vertex $w$ that is in both $C_1$ and $G$.
+
+    \noindent
+    \textbf{Step 6.} Construct a trail in $G'$ beginning at $w$ and continue until we arrive back at
+    $w$. We will call the resulting closed trail $C_2$.
+
+    \noindent
+    \textbf{Step 7.} Combine $C_1$ and $C_2$ to form a new closed trail denoted as $C'$. If $C'$
+    contains all of the edges of $G$, we have found a closed Eulerian trail and are done. If not 
+    continue to \textbf{Step 8.}
+
+    \noindent \emph{
+        We know that combining two closed trails form a new closed trail. To show this, start at $v$
+        in $C_1$. Trace $C_1$ until we arrive at $w$. Once we reach $w$, trace the entirity of $C_2$.
+        Once we arrive back at $w$, continue tracing $C_1$ until we end at $v$. The trace is $C'$.
+    }
+
+    \noindent
+    \textbf{Step 8.} Remove all of the edges of $C'$ from $G$ to get $G''$. Chose a vertex in both
+    $C'$ and $G''$ and continue in this manner until we have removed all the edges of $G$.
+
+    
+\end{proof}
 
 In the tex file, note that a label was added within the above theorem environment.  This is so that you can refer to Theorem \ref{theorem1} and if you add more theorems to the paper, they will automatically be renumbered.  The same is true for references.  You may refer to \cite{R}.  It may be necessary to compile the tex file twice before the labels show up.  All sources used in your paper should be listed as in the samples below.  The first, second, and fifth references are articles, while the third and fourth are books.
 
