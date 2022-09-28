@@ -74,7 +74,7 @@
 
 \begin{abstract}
 In this paper we explore a proof showing that a graph contains a closed Eulerian trail if and only if
-all of its vertices have even degree. We show part of this proof by developing an algorithm.
+all of its vertices have even degree. We show this with a direct proof and by developing an algorithm.
 \end{abstract}
 
 \maketitle
@@ -100,10 +100,11 @@ town and cross each bridge exactly once.
 \end{figure} 
 
 The problem was solved by Leonard Euler, who found it to be impossible. His reasoning was that 
-every time you enter a landmass you must also be able to leave it, so any landmass with and odd
+every time you enter a landmass you must also be able to leave it, so any landmass with an odd
 number of bridges coming from it would cause you to get stuck. There is an exception for the landmass
-that you start and end on, but in K\"{o}nigsberg each landmass has an odd number of bridges coming from
-them. This led to the theorem we are looking at today as well as set the basis for graph theory.
+that you start and as well as the one you end on, but in K\"{o}nigsberg each landmass has an odd 
+number of bridges coming from them. This led to the theorem we are looking at today as well as 
+set the basis for modern day graph theory.
 
 \section{Definitions}
 \noindent
@@ -113,37 +114,38 @@ Before we look at the theorem, we first must go over some definitions to help un
 \textbf{Definition} 
 \emph{
     A \textbf{graph} G = (V,E) is comprised of a set of vertices V and a set of 
-    different undordered pairs of distinct vertices from V. Elements from E are called edges.
+    different unordered pairs of distinct vertices from V called E. Elements from E are called edges.
 }
 
 \noindent
 \textbf{Definition} 
 \emph{
     Two vertices v, w that exist in V are said to be \textbf{adjacent} if the
-    edge vw exits in E.
+    edge vw exists in E.
 }
 
 \noindent
 \textbf{Definition}
 \emph{
-    If ab exits in E, then we say that the vertex v and the edge vw are \textbf{incident}; w would
+    If ab exists in E, then we say that the vertex v and the edge vw are \textbf{incident}; w would
     also be incident with vw.
 }
 
 \noindent
 \textbf{Definition}
 \emph{
-    The \textbf{degree} of a vertex v that exits in V is the amount of edges in E that are incident
+    The \textbf{degree} of a vertex v that exists in V is the amount of edges in E that are incident
     with v.
 }
 
 \noindent
 \textbf{Definition}
 \emph{
-    A \textbf{walk} W is a finitie sequence of vertices in which each consecutive pair of vertices
+    A \textbf{walk} W is a finite sequence of vertices in which each consecutive pair of vertices
     are adjacent.
 }
-Vertices and edges are allowed to be repeated in a walk, with the exception of the same vertex consecutively.
+Vertices and edges are allowed to be repeated in a walk, with the exception of the same vertex consecutively,
+to prevent loops.
 
 \noindent
 \textbf{Definition}
@@ -194,6 +196,12 @@ Vertices and edges are allowed to be repeated in a walk, with the exception of t
     ($\Leftarrow$) Assume $G$ is a connected graph with every vertex having even degree. Prove that
     it has a closed Eulerian trail.
 
+    \begin{figure}[h!]
+        \centerline{
+        {\includegraphics[width=.45\textwidth]{pictures/G.pdf}}}
+        \caption{Graph $G$ we will look at as we construct the algorithm.}\label{G}
+    \end{figure} 
+
     \noindent
     To prove this direction we must construct an algorithm. 
     
@@ -207,6 +215,12 @@ Vertices and edges are allowed to be repeated in a walk, with the exception of t
     mean that $a$ has an odd degree, which would be a contradiction.}) Since we did arrive back at
     $v$ we formed a closed trail, which we will called $C_1$.
 
+    \begin{figure}[h!]
+        \centerline{
+        {\includegraphics[width=.45\textwidth]{pictures/C1.pdf}}}
+        \caption{$C_1$ is highlighted in orange.}\label{C1}
+    \end{figure} 
+
     \noindent
     \textbf{Step 3.} Check if $C_1$ contains all the edges of $G$. If it does we have found a closed
     Eulerian trail and are done. If it does not contain all of the edges of $G$ then we continue to
@@ -214,7 +228,13 @@ Vertices and edges are allowed to be repeated in a walk, with the exception of t
 
     \noindent
     \textbf{Step 4.} Remove all of the edges in $C_1$ from $G$. We will call the resulting graph $G'$.
-    $G'$ does not need to be connected.
+    ($G'$ does not need to be connected).
+
+    \begin{figure}[h!]
+        \centerline{
+        {\includegraphics[width=.45\textwidth]{pictures/G'.pdf}}}
+        \caption{The remaining edges after we remove $C_1$ from $G$ form $G'$.}\label{G2}
+    \end{figure} 
 
     \noindent
     \textbf{Step 5.} Choose an arbitrary vertex $w$ that is in both $C_1$ and $G$.
@@ -223,59 +243,96 @@ Vertices and edges are allowed to be repeated in a walk, with the exception of t
     \textbf{Step 6.} Construct a trail in $G'$ beginning at $w$ and continue until we arrive back at
     $w$. We will call the resulting closed trail $C_2$.
 
+    \begin{figure}[h!]
+        \centerline{
+        {\includegraphics[width=.5\textwidth]{pictures/C2.pdf}}}
+        \caption{$C_2$ is highlighted in blue.}\label{C2}
+    \end{figure} 
+
     \noindent
     \textbf{Step 7.} Combine $C_1$ and $C_2$ to form a new closed trail denoted as $C'$. If $C'$
     contains all of the edges of $G$, we have found a closed Eulerian trail and are done. If not 
     continue to \textbf{Step 8.}
 
+    \begin{figure}[h!]
+        \centerline{
+        {\includegraphics[width=.5\textwidth]{pictures/C'.pdf}}}
+        \caption{$C'$ is formed by combining $C_1$ and $C_2$. $C'$ does contain all of the edges of
+        $G$, so we are done in this example.}\label{C'}
+    \end{figure} 
+
     \noindent \emph{
         We know that combining two closed trails form a new closed trail. To show this, start at $v$
-        in $C_1$. Trace $C_1$ until we arrive at $w$. Once we reach $w$, trace the entirity of $C_2$.
+        in $C_1$. Trace $C_1$ until we arrive at $w$. Once we reach $w$, trace the entirety of $C_2$.
         Once we arrive back at $w$, continue tracing $C_1$ until we end at $v$. The trace is $C'$.
     }
+
+    \begin{figure}[h!]
+        \centerline{
+        {\includegraphics[width=.5\textwidth]{pictures/c'_traversal.pdf}}}
+        \caption{Followed the number trail to see how two closed trails can be combined to formed
+        another closed trail.}\label{C_traverse}
+    \end{figure} 
 
     \noindent
     \textbf{Step 8.} Remove all of the edges of $C'$ from $G$ to get $G''$. Chose a vertex in both
     $C'$ and $G''$ and continue in this manner until we have removed all the edges of $G$.
 
-    
+    \noindent    
 \end{proof}
 
-In the tex file, note that a label was added within the above theorem environment.  This is so that you can refer to Theorem \ref{theorem1} and if you add more theorems to the paper, they will automatically be renumbered.  The same is true for references.  You may refer to \cite{R}.  It may be necessary to compile the tex file twice before the labels show up.  All sources used in your paper should be listed as in the samples below.  The first, second, and fifth references are articles, while the third and fourth are books.
+This theorem is highly related to another theorem dealing with Eulerian trails.
 
-Here is a sample of a math environment: $\sqrt[4]{14}$.  Use double $\$$ if you wish to have a math environment centered on a line by itself:
-$$\mathop{\int}\limits_{1}^{\infty} e^{-x} \ dx.$$
-If you would like to have an equation be numbered, use the following:
-\begin{equation}  4x^5+3y^7=85. \label{eq} \end{equation}
-You can then refer label in the equation.  Eg., equation (\ref{eq}) pulls up the correct number.
+\begin{theorem} \label{theorem2}
+    A connected graph has an Eulerian trail but not an closed Eulerian trail if and only if it has
+    exactly two vertices of odd degree.
+\end{theorem}
 
-Equations, inequalities, etc... can be aligned using the following commands:
-\begin{align} \delta (H) &= n-(r-1)-\Delta (\overline{H}) \notag \\
-                                    &\ge n-(r-1)-(m+2) \notag \\
-                                    &\ge n-m-r-1 \label{ineq} \end{align}
-As with the equation environment, each line that has $\backslash$notag will not be labelled, and putting a label allows you to refer to property (\ref{ineq}).
 
-Matrices can be created using the array command:
+We will not make a formal proof of this theorem, but we can look at it intuitively. The difference
+between an Eulerian trail and closed Eulerian trail is that a closed Eulerian trail begins and ends
+at the same vertex. So to have an Eulerian trail that is not closed we know that the first vertex $a$
+must be distinct from the last vertex $z$. In the proof of Theorem \ref{theorem1} we found that the
+beginning vertex must be incident to $2k+2$ edges, since the first edge and the last edge are both
+incident to it. So it follows that $a$ and $z$ would be incident to $2k+1$ edges, since $a$ is incident
+to the first edge but not the last and the opposite is true for $z$. All of the other edges would still
+be incident to $2k$ edges. For the other direction we can prove using the same algorithm. The only
+difference is we need to make a new "fake" edge between $a$ and $z$ to temporarily form a closed
+Eulerian trail. Once we are done with the algorithm we can remove $az$ to return to a Eulerian trail
+that is not closed.
 
-$$\left( \begin{array}{rrr} -2 & 3 & -7 \\ 2 & 0 & 4 \end{array} \right)$$
-% Note that the 3 r's after the above array command right-align the entries.  Replacing any of them with l or c will left-align or center the corresponding columns.
+\section{Conclusion}
+
+It should now be clear why it was impossible to take a trip across K\"{o}nigsberg and cross each bridge
+exactly once. Figure \ref{g_bridge} shows the bridges as a graph, with the landmass as the vertices and the 
+bridges as the edges. You can see how the vertex on the left has a degree of five and that the others
+have degree three, so there is no closed Eulerian trail.
+
+\begin{figure}[h!]
+    \centerline{
+    {\includegraphics[width=.5\textwidth]{pictures/konigsberg.pdf}}}
+    \caption{A graphical representation of the bridges of K\"{o}nigsberg.}\label{g_bridge}
+\end{figure} 
+
+The bridges of K\"{o}nigsberg is also a great example of how we can use graph theory to take information
+from the real world and simplify it to make it easier to study. It is for this reason that Eulerian trails
+have many practical uses. The most common use of them is likely navigation, especially for companies 
+like mail carriers. These companies can look at roads as edges and houses as vertices, and they need
+to visit every vertex as efficiently as possible. So they would find a closed Eulerian trail (if one
+exists) beginning and terminating at their distribution center. Another use would be computer networking,
+for similar reasons. You want to be able to connect computers and servers as efficiently as
+possible. Closed Eulerian trails are also being used to help reconstruct DNA fragments. Eulerian trails
+and graph theory are often really useful when it comes to studying how complex systems are connected.
+
 
 \bibliographystyle{amsplain}
 \begin{thebibliography}{10}
 
-\bibitem{C} V. Chv\'atal, {\it Tree-complete Graph Ramsey Numbers,}  J. Graph Theory {\bf 1} (1977), 93.
+\bibitem{C} S. Carlson, K\"{o}nigsberg bridge problem: https://www.britannica.com/science/Konigsberg-bridge-problem
 
-\bibitem{CH} V. Chv\'atal and F. Harary, {\it Generalized Ramsey Theory for Graphs III. Small Off-diagonal Numbers,} Pacific J. Math. {\bf 41} (1972), 335-345.
+\bibitem{B} S. Belcastro, {\it Discrete Mathematics with Ducks}, CRC Press, 2012.
 
-\bibitem{IR} K. Ireland and M. Rosen, ``A Classical
-Introduction to Modern Number Theory,'' $2^{nd}$ edition,
-Springer-Verlag, 1990.
-
-\bibitem{J} G. Janusz, ``Algebraic Number Fields,'' $2^{nd}$ edition, Graduate Studies in Mathematics {\bf 7}, American Mathematical Society, Providence, RI, 1996.
-
-\bibitem{R} F. Ramsey, {\it On a Problem of Formal Logic,} Proc. London Math. Soc. {\bf 30} (1930), 264-286.
-
-
+\bibitem{E} S. Epp, {\it Discrete Mathematics with Applications}, Brooks Cole, 1996.
 
 \end{thebibliography}
 
